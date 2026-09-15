@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botanica Glow</title>
+    <!-- Google Fonts & FontAwesome İkonlar -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* GENEL BİÇİMLENDİRME */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #6b8e23; /* Doğa yeşili */
+            --primary-hover: #556b2f;
+            --whatsapp-color: #25D366;
+            --whatsapp-hover: #1da851;
+            --bg-color: #faf9f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #777777;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* HERO SEKSİYONU */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200') no-repeat center center/cover;
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .hero p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+
+        .hero-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .hero-btn:hover { background-color: var(--primary-hover); }
+
+        /* ÜRÜNLER CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ÜRÜN GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .category-tag {
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        /* BUTONLAR */
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .btn-inspect {
+            flex: 1;
+            background-color: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn-inspect:hover { background-color: #e0e0e0; }
+
+        .btn-whatsapp {
+            flex: 1.5;
+            background-color: var(--whatsapp-color);
+            color: white;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn-whatsapp:hover { background-color: var(--whatsapp-hover); }
+
+        /* MODAL (İNCELE POP-UP) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 576px) {
+            .modal-content { flex-direction: row; }
+            .modal-img { width: 50%; height: auto; }
+            .modal-details { width: 50%; }
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            background: none;
+            border: none;
+        }
+
+        .modal-title { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .modal-price { font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin-bottom: 1rem; }
+        .modal-desc { font-size: 0.9rem; color: #555; margin-bottom: 1.5rem; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Botanica Glow</div>
+            <ul class="nav-links">
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="urunler.html">Tüm Ürünler</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+                <li><a href="www.instagram.com/onur.ank.gcm0">İnstagram</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Doğal Güzelliğinizi Keşfedin</h1>
+        <p>Cildiniz ve saçınız için %100 doğal çözümler.</p>
+        <a href="#urunler" class="hero-btn">Ürünleri İncele</a>
+    </section>
+
+    <!-- ÜRÜNLER -->
+    <main class="container" id="urunler">
+        <h2 class="section-title">Öne Çıkan Ürünler</h2>
+        
+        <div class="product-grid">
+
+            <!-- Ürün 1 -->
+            <div class="product-card">
+                <img src="https://indevaglobal.com/upload/1785613183-6a6e4b7f9176d.jpg" alt="Cilt Beyazlatıcı Bakım Kremi" class="product-image">
+                <div class="product-info">
+                    <span class="category-tag">Cilt Bakımı</span>
+                    <h3 class="product-title">Cilt Beyazlatıcı Bakım Kremi</h3>
+                    <div class="price">1.350,00 ₺</div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" onclick="openModal('Cilt Beyazlatıcı Bakım Kremi', '1.1350,00', 'https://indevaglobal.com/upload/1785613183-6a6e4b7f9176d.jpg', 'Dea Bella Cilt Beyazlatıcı Bakım Kremi – Daha Aydınlık, Eşit Tonlu ve Işıltılı Bir Cilt!')">İncele</button>
+                        <button class="btn-whatsapp" onclick="sendToWhatsApp('Cilt Beyazlatıcı Bakım Kremi', '1.350,00 ₺')"><i class="fa-brands fa-whatsapp"></i> Sipariş</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ürün 2 -->
+            <div class="product-card">
+                <img src="https://indevaglobal.com/upload/1785613317-6a6e4c05c6262.png" alt="Glycolic Acid Sıkılaştırıcı Tonik" class="product-image">
+                <div class="product-info">
+                    <span class="category-tag">Cilt Bakımı</span>
+                    <h3 class="product-title">Glycolic Acid Sıkılaştırıcı Tonik</h3>
+                    <div class="price">1.150,00 ₺</div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" onclick="openModal('Glycolic Acid Sıkılaştırıcı Tonik', '1.150,00 ₺', 'https://indevaglobal.com/upload/1785613317-6a6e4c05c6262.png', 'Dea Bella Sıkılaştırıcı Tonik – Daha Pürüzsüz, Dengeli ve Canlı Bir Cilt!')">İncele</button>
+                        <button class="btn-whatsapp" onclick="sendToWhatsApp('Glycolic Acid Sıkılaştırıcı Tonik', '1.150,00 ₺')"><i class="fa-brands fa-whatsapp"></i> Sipariş</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ürün 3 -->
+            <div class="product-card">
+                <img src="https://indevaglobal.com/upload/1785613435-6a6e4c7b7cc0f.png" alt="Göz Çevresi Bakım Serumu" class="product-image">
+                <div class="product-info">
+                    <span class="category-tag">Cilt Bakımı</span>
+                    <h3 class="product-title">Yeşil Çay Temizleme Jeli</h3>
+                    <div class="price">1.350,00 ₺</div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" onclick="openModal('Göz Çevresi Bakım Serumu', '1.350,00 ₺', 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=500', 'Dea Bella Göz Çevresi Bakım Serumu – Daha Aydınlık, Dinlenmiş ve Genç Görünen Göz Çevresi!')">İncele</button>
+                        <button class="btn-whatsapp" onclick="sendToWhatsApp('Göz Çevresi Bakım Serumu', '1.350,00 ₺')"><i class="fa-brands fa-whatsapp"></i> Sipariş</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ürün 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=500" alt="Biotin Onarıcı Şampuan" class="product-image">
+                <div class="product-info">
+                    <span class="category-tag">Cilt Bakımı</span>
+                    <h3 class="product-title">Güneş Kremi</h3>
+                    <div class="price">1.250,00 ₺</div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" onclick="openModal('Güneş Kremi', '1.250,00 ₺', 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=500', 'Dea Bella Sun Care SPF 50+ Güneş Kremi, cildi güneşin zararlı UVA ve UVB ışınlarına karşı korumaya yardımcı olurken, aynı zamanda nemlendiren ve bakım sağlayan özel formülüyle günlük kullanıma uygun olarak geliştirilmiştir.')">İncele</button>
+                        <button class="btn-whatsapp" onclick="sendToWhatsApp('Güneş Kremi', '1.250,00 ₺')"><i class="fa-brands fa-whatsapp"></i> Sipariş</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- İNCELE (MODAL) PENCERESİ -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <img src="" id="modalImg" class="modal-img" alt="Ürün">
+            <div class="modal-details">
+                <h3 class="modal-title" id="modalTitle">Ürün Adı</h3>
+                <div class="modal-price" id="modalPrice">0 ₺</div>
+                <p class="modal-desc" id="modalDesc">Ürün açıklaması buraya gelecek.</p>
+                <button class="btn-whatsapp" id="modalWhatsappBtn" style="width: 100%; margin-top: auto;">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp ile Sipariş Ver
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="iletisim">
+        <p>&copy; 2026 Botanica Glow Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- JAVASCRIPT KODLARI -->
+    <script>
+        // ⚠️ KENDİ WHATSAPP NUMARANIZI BURAYA YAZIN (Başında + veya 0 olmadan, ülke kodu ile: Örn 905XXXXXXXXX)
+        const phoneNummer = "905523548098"; 
+
+        // WHATSAPP'A YÖNLENDİRME FONKSİYONU
+        function sendToWhatsApp(productName, productPrice) {
+            const message = `Merhaba, '${productName}' (${productPrice}) ürünü hakkında bilgi almak ve sipariş vermek istiyorum.`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNummer}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // İNCELE (MODAL) AÇMA FONKSİYONU
+        function openModal(name, price, imgSrc, description) {
+            document.getElementById('modalTitle').innerText = name;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalDesc').innerText = description;
+
+            // Modal içindeki WhatsApp butonuna ilgili ürün bilgilerini tanımla
+            const modalWaBtn = document.getElementById('modalWhatsappBtn');
+            modalWaBtn.onclick = function() {
+                sendToWhatsApp(name, price);
+            };
+
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        // İNCELE (MODAL) KAPATMA FONKSİYONU
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // Pencere dışına tıklandığında popup'ı kapat
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
